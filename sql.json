@@ -1,0 +1,555 @@
+{
+  /* Stand 09.04.2022
+  // Place your snippets for sql here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+
+  https://snippet-generator.app/
+
+	The body of a snippet supports the following features:
+	1. Tab Stops												$1,$2,$3... $0
+	2. Mirrored Tab Stops										$1,$2,$1(same value like in 1st)... $0
+	3. Placeholders												${1:default} (can be nested, like this: ${1:first ${2:second}})
+	4. Choices													${1|yes,no|}
+	5. Variables:												${TM_SELECTED_TEXT:default}
+						TM_SELECTED_TEXT: The currently selected text or the empty string,
+						TM_CURRENT_LINE: The contents of the current line,
+						TM_CURRENT_WORD: The contents of the word under cursor or the empty string,
+						TM_LINE_INDEX: The zero-index based line number,
+						TM_LINE_NUMBER: The one-index based line number,
+						TM_FILENAME: The filename of the current document,
+						TM_FILENAME_BASE: The filename of the current document without its extensions,
+						TM_DIRECTORY: The directory of the current document,
+						TM_FILEPATH: The full file path of the current document,
+						CLIPBOARD: The contents of your clipboard,
+						WORKSPACE_NAME: The name of the opened workspace or folder.
+
+						The following time-related variables can be used:
+
+						CURRENT_YEAR: The current year,
+						CURRENT_YEAR_SHORT: The current year's last two digits,
+						CURRENT_MONTH: The month as two digits (example '07'),
+						CURRENT_MONTH_NAME: The full name of the month (example 'July'),
+						CURRENT_MONTH_NAME_SHORT: The short name of the month (example 'Jul'),
+						CURRENT_DATE: The day of the month,
+						CURRENT_DAY_NAME: The name of day (example 'Monday'),
+						CURRENT_DAY_NAME_SHORT: The short name of the day (example 'Mon'),
+						CURRENT_HOUR: The current hour in 24-hour clock format,
+						CURRENT_MINUTE: The current minute,
+						CURRENT_SECOND: The current second,
+						CURRENT_SECONDS_UNIX: The number of seconds since the Unix epoch.
+
+						The following comment variables can be used. They honour the syntax of the document's language:
+
+						BLOCK_COMMENT_START: For example, <!-- in HTML,
+						BLOCK_COMMENT_END: For example , --> in HTML,
+						LINE_COMMENT: For example, // in JavaScript.
+	*/
+  "My_USE_DB": {
+    "prefix": "My_USE_DB",
+    "body": ["USE ${0:DB};"],
+    "description": "My_USE_DB"
+  },
+  "My_SELECT": {
+    "prefix": "My_SELECT",
+    "body": ["SELECT * FROM ${0:TABLE};"],
+    "description": "My_SELECT"
+  },
+  "My_SELECT_DB": {
+    "prefix": "My_SELECT",
+    "body": ["SELECT ${1|*,Column1|}", "FROM ${2:DB}.${0:table_name};"],
+    "description": "SELECT"
+  },
+  "My_SELECT_WHERE": {
+    "prefix": "My_SELECT_WHERE",
+    "body": [
+      "SELECT ${1:COLUMN1}, ${2:COLUMN2} FROM ${3:TABLE} WHERE ${4:COLUMN3}${5|<,>,=|}>${0:CONDITION};"
+    ],
+    "description": "My_SELECT_WHERE"
+  },
+  "My_SELECT_AS_Alias": {
+    "prefix": "My_SELECT_AS_Alias",
+    "body": [
+      "SELECT ${1:COLUMN1} , ${2:COLUMN2} AS \"${3:ALIAS}\" FROM ${0:TABLE};"
+    ],
+    "description": "My_SELECT_AS_Alias"
+  },
+  "My_SELECT_Calc": {
+    "prefix": "My_SELECT_Calc",
+    "body": [
+      "SELECT ${1:COLUMN1} ${2:OPERATOR} ${3:COLUMN2} AS \"${4:RESULT}\" FROM ${0:TABLE};"
+    ],
+    "description": "My_SELECT_Calc"
+  },
+  "My_SELECT_ORDER": {
+    "prefix": "My_SELECT_ORDER",
+    "body": ["SELECT ${1:COLUMN1} FROM  ${2:TABLE} ORDER BY ${0:COLUMN2};"],
+    "description": "My_SELECT_ORDER"
+  },
+  "My_SELECT_ORDER_DESC": {
+    "prefix": "My_SELECT_ORDER_DESC",
+    "body": [
+      "SELECT ${1:COLUMN1} FROM  ${2:TABLE} ORDER BY ${0:COLUMN2} DESC;"
+    ],
+    "description": "My_SELECT_ORDER_DESC"
+  },
+  "My_SELECT_ORDER_LIMIT": {
+    "prefix": "My_SELECT_ORDER_LIMIT",
+    "body": [
+      "SELECT ${1:COLUMN1} FROM ${2:TABLE} ORDER BY ${3:COLUMN2} LIMIT ${0:VALUE1};"
+    ],
+    "description": "My_SELECT_ORDER_LIMIT"
+  },
+  "My_SELECT_HIDDEN_JOIN": {
+    "prefix": "My_SELECT_HIDDEN_JOIN",
+    "body": ["SELECT ${1:COLUMN1}, ${2:COLUMN2} FROM ${3:TABLE1},${0:TABLE2};"],
+    "description": "My_SELECT_HIDDEN_JOIN"
+  },
+  "My_SELECT_JOIN_WHERE": {
+    "prefix": "My_SELECT_JOIN_WHERE",
+    "body": [
+      "SELECT ${1:TABLE1}.${0:COLUMN3},",
+      "    ${3:COLUMN1},",
+      "    ${4:COLUMN2}",
+      "FROM ${1:TABLE1},",
+      "    ${2:TABLE2}",
+      "WHERE ${1:TABLE1}.${0:COLUMN3} = ${2:TABLE2}.${0:COLUMN3};"
+    ],
+    "description": "My_SELECT_JOIN_WHERE"
+  },
+  "My_SELECT_JOIN_WHERE_DISTINCT": {
+    "prefix": "My_SELECT_JOIN_WHERE_DISTINCT",
+    "body": [
+      "SELECT DISTINCT ${1:TABLE1}.${0:COLUMN3},",
+      "    ${3:COLUMN1},",
+      "    ${4:COLUMN2},",
+      "    ${2:TABLE2}.${0:COLUMN3}",
+      "FROM ${1:TABLE1},",
+      "    ${2:TABLE2}",
+      "WHERE ${1:TABLE1}.${0:COLUMN3} = ${2:TABLE2}.${0:COLUMN3};"
+    ],
+    "description": "My_SELECT_JOIN_WHERE_DISTINCT"
+  },
+  "My_SELECT_JOIN_WHERE_DISTINCT_Multiple": {
+    "prefix": "My_SELECT_JOIN_WHERE_DISTINCT_Multiple",
+    "body": [
+      "SELECT DISTINCT ${5:COLUMN1}",
+      "FROM ${1:TABLE1},",
+      "    ${2:TABLE2},",
+      "    ${3:TABLE3},",
+      "    ${4:TABLE4}",
+      "WHERE ${1:TABLE1}.${6:COLUMN2} = ${2:TABLE2}.${6:COLUMN2}",
+      "    AND ${2:TABLE2}.${7:COLUMN3} = ${3:TABLE3}.${7:COLUMN3}",
+      "    AND ${3:TABLE3}.${8:COLUMN4} = ${4:TABLE4}.${8:COLUMN4}",
+      "    AND ${9:COLUMN5} = \"${0:VALUE1}\";"
+    ],
+    "description": "My_SELECT_JOIN_WHERE_DISTINCT_Multiple"
+  },
+  "My_SELECT_FULL_JOIN": {
+    "prefix": "My_SELECT_FULL_JOIN",
+    "body": [
+      "SELECT ${1:TABLE1}.${3:COLUMN1},",
+      "    ${1:TABLE1}.${4:COLUMN2},",
+      "    ${2:TABLE2}.${5:COLUMN3},",
+      "    ${2:TABLE2}.${6:COLUMN4}",
+      "FROM ${1:TABLE1}",
+      "    FULL JOIN ${2:TABLE2} ON ${1:TABLE1}.${0:COLUMN5} = ${2:TABLE2}.${0:COLUMN5};"
+    ],
+    "description": "My_SELECT_FULL_JOIN"
+  },
+  "My_SELECT_INNER_JOIN": {
+    "prefix": "My_SELECT_INNER_JOIN",
+    "body": [
+      "SELECT ${1:TABLE1}.${3:COLUMN1},",
+      "    ${1:TABLE1}.${4:COLUMN2},",
+      "    ${2:TABLE2}.${5:COLUMN3},",
+      "    ${2:TABLE2}.${6:COLUMN4}",
+      "FROM ${1:TABLE1}",
+      "    INNER JOIN ${2:TABLE2} ON ${1:TABLE1}.${0:COLUMN5} = ${2:TABLE2}.${0:COLUMN5};"
+    ],
+    "description": "My_SELECT_INNER_JOIN"
+  },
+  "My_SELECT_LEFT_JOIN": {
+    "prefix": "My_SELECT_LEFT_JOIN",
+    "body": [
+      "SELECT ${1:TABLE1}.${3:COLUMN1},",
+      "    ${1:TABLE1}.${4:COLUMN2},",
+      "    ${2:TABLE2}.${5:COLUMN3},",
+      "    ${2:TABLE2}.${6:COLUMN4}",
+      "FROM ${1:TABLE1}",
+      "    LEFT JOIN ${2:TABLE2} ON ${1:TABLE1}.${0:COLUMN5} = ${2:TABLE2}.${0:COLUMN5};"
+    ],
+    "description": "My_SELECT_LEFT_JOIN"
+  },
+  "My_SELECT_RIGHT_JOIN": {
+    "prefix": "My_SELECT_RIGHT_JOIN",
+    "body": [
+      "SELECT ${1:TABLE1}.${3:COLUMN1},",
+      "    ${1:TABLE1}.${4:COLUMN2},",
+      "    ${2:TABLE2}.${5:COLUMN3},",
+      "    ${2:TABLE2}.${6:COLUMN4}",
+      "FROM ${1:TABLE1}",
+      "    RIGHT JOIN ${2:TABLE2} ON ${1:TABLE1}.${0:COLUMN5} = ${2:TABLE2}.${0:COLUMN5};"
+    ],
+    "description": "My_SELECT_RIGHT_JOIN"
+  },
+  "My_SELECT_STRAIGHT_JOIN": {
+    "prefix": "My_SELECT_STRAIGHT_JOIN",
+    "body": [
+      "SELECT ${1:TABLE1}.${3:COLUMN1},",
+      "    ${1:TABLE1}.${4:COLUMN2},",
+      "    ${2:TABLE2}.${5:COLUMN3},",
+      "    ${2:TABLE2}.${6:COLUMN4}",
+      "FROM ${1:TABLE1}",
+      "    STRAIGHT_JOIN ${2:TABLE2} ON ${1:TABLE1}.${0:COLUMN5} = ${2:TABLE2}.${0:COLUMN5};"
+    ],
+    "description": "My_SELECT_STRAIGHT_JOIN"
+  },
+  "My_SELECT_ANY_JOIN_Multiple": {
+    "prefix": "My_SELECT_ANY_JOIN_Multiple",
+    "body": [
+      "SELECT DISTINCT ${1:COLUMN1},",
+      "    ${2:COLUMN2},",
+      "    ${3:COLUMN3}",
+      "FROM ${4:TABLE1}",
+      "    RIGHT JOIN ${5:TABLE2} ON ${4:TABLE1}.${7:COLUMN4} = ${5:TABLE2}.${7:COLUMN4}",
+      "    INNER JOIN ${6:TABLE3} ON ${5:TABLE2}.${8:COLUMN5} = ${6:TABLE3}.${8:COLUMN5}",
+      "    LEFT JOIN Produkte ON ${6:TABLE3}.${9:COLUMN6} = produkte.${9:COLUMN6}",
+      "    AND ${10:COLUMN7} = '${0:VALUE1}';"
+    ],
+    "description": "My_SELECT_ANY_JOIN_Multiple"
+  },
+  "My_SELECT_NATURAL_JOIN": {
+    "prefix": "My_SELECT_NATURAL_JOIN",
+    "body": [
+      "SELECT DISTINCT ${1:COLUMN1}",
+      "FROM ${2:TABLE1}",
+      "    NATURAL JOIN ${3:COLUMN2}",
+      "    NATURAL JOIN ${4:COLUMN3}",
+      "    NATURAL JOIN ${5:COLUMN4}",
+      "WHERE ${6:COLUMN5} = \"${0:VALUE1}\";"
+    ],
+    "description": "My_SELECT_NATURAL_JOIN"
+  },
+  "My_SELECT_AS_Shorting": {
+    "prefix": "My_SELECT_AS_Shorting",
+    "body": [
+      "SELECT DISTINCT ${3:ALIAS1}.${5:COLUMN1} ",
+      "FROM ${1:TABLE1}  AS ${3:ALIAS1}, ${2:TABLE2}  AS ${4:ALIAS2} ",
+      "WHERE ${3:ALIAS1}.${5:COLUMN1} = ${4:ALIAS2}.${5:COLUMN1}",
+      "     AND ${3:ALIAS1}.${5:COLUMN1} ${7:OPERATOR1} ${9:VALUE1}",
+      "     AND ${6:COLUMN2} ${8:OPERATOR2} ${0:VALUE2};"
+    ],
+    "description": "My_SELECT_AS_Shorting"
+  },
+  "My_SELECT_AS_SameTABLE": {
+    "prefix": "My_SELECT_AS_SameTABLE",
+    "body": [
+      "SELECT ${1:ALIAS1}.${4:COLUMN1},",
+      "    ${2:ALIAS2}.${4:COLUMN1}",
+      "FROM ${3:TABLE} AS ${1:ALIAS1},",
+      "    ${3:TABLE} AS ${2:ALIAS2}",
+      "WHERE NOT ${1:ALIAS1}.${0:COLUMN2} = ${2:ALIAS2}.${0:COLUMN2};"
+    ],
+    "description": "My_SELECT_AS_SameTABLE"
+  },
+  "My_SELECT_GROUP_BY": {
+    "prefix": "My_SELECT_GROUP_BY",
+    "body": [
+      "SELECT ${1:COLUMN1}, ${2:COLUMN2}, SUM( ${3:COLUMN3} )",
+      "FROM ${4:TABLE1}",
+      "NATURAL JOIN ${5:TABLE2}",
+      "NATURAL JOIN ${6:TABLE3}",
+      "NATURAL JOIN ${7:TABLE4}",
+      "GROUP BY ${4:TABLE1}.${0:COLUMN3}, ${1:COLUMN1},${2:COLUMN2}",
+      "ORDER BY SUM( ${3:COLUMN3} ) DESC;"
+    ],
+    "description": "My_SELECT_GROUP_BY"
+  },
+  "My_AggregateFunctions": {
+    "prefix": "My_AggregateFunctions",
+    "body": [
+      "${1|MIN(COLUMN),MAX(COLUMN),COUNT(COLUMN),SUM(COLUMN),AVG(COLUMN)|}"
+    ],
+    "description": "My_AggregateFunctions"
+  },
+  "My_WHERE_HAVING_AggregatFunction": {
+    "prefix": "My_WHERE_HAVING_AggregatFunction",
+    "body": [
+      "SELECT ${1:COLUMN1}, ${2:COLUMN2}, SUM( ${3:COLUMN3} )",
+      "FROM ${4:TABLE1}",
+      "NATURAL JOIN ${5:TABLE2}",
+      "NATURAL JOIN ${6:TABLE3}",
+      "NATURAL JOIN ${7:TABLE4}",
+      "WHERE ${3:COLUMN3} >${8:VALUE1}",
+      "GROUP BY ${4:TABLE1}.${0:COLUMN3}, ${1:COLUMN1},${2:COLUMN2}",
+      "HAVING SUM( ${3:COLUMN3} ) >${9:VALUE2}",
+      "ORDER BY SUM( ${3:COLUMN3} ) DESC;"
+    ],
+    "description": "My_WHERE_HAVING_AggregatFunction"
+  },
+  "My_WHERE_HAVING_noAggregatFunction": {
+    "prefix": "My_WHERE_HAVING_noAggregatFunction",
+    "body": [
+      "SELECT ${1:COLUMN1}, ${2:COLUMN2}, SUM( ${3:COLUMN3} )",
+      "FROM ${4:TABLE1}",
+      "NATURAL JOIN ${5:TABLE2}",
+      "NATURAL JOIN ${6:TABLE3}",
+      "NATURAL JOIN ${7:TABLE4}",
+      "WHERE ${3:COLUMN3} >${8:VALUE1}",
+      "GROUP BY ${4:TABLE1}.${0:COLUMN3}, ${1:COLUMN1},${2:COLUMN2}",
+      "HAVING ${0:COLUMN3} >${9:VALUE2}",
+      "ORDER BY SUM( ${3:COLUMN3} ) DESC;"
+    ],
+    "description": "My_WHERE_HAVING_noAggregatFunction"
+  },
+  "My_Subquery": {
+    "prefix": "My_Subquery",
+    "body": [
+      "SELECT DISTINCT ${1:COLUMN1}, ${2:COLUMN2}",
+      "FROM ${3:TABLE1}",
+      "NATURAL JOIN ${4:TABLE2}",
+      "NATURAL JOIN ${5:TABLE3}",
+      "NATURAL JOIN ${6:TABLE4}",
+      "WHERE ${0:COLUMN3}=(SELECT MAX(${0:COLUMN3}) FROM ${6:TABLE4});"
+    ],
+    "description": "My_Subquery"
+  },
+  "My_SELECT_IN_noOR_Chain": {
+    "prefix": "My_SELECT_IN_noOR_Chain",
+    "body": [
+      "SELECT ${1:COLUMN1} FROM ${2:TABLE} WHERE ${3:COLUMN2} IN(${4:VALUE1},${5:VALUE2},${0:VALUE3});"
+    ],
+    "description": "My_SELECT_IN_noOR_Chain"
+  },
+  "My_SELECT_LEFT_Chars": {
+    "prefix": "My_SELECT_LEFT_Chars",
+    "body": ["SELECT LEFT(${1:COLUMN1}, ${2:VALUE})", "FROM ${0:TABLE};"],
+    "description": "My_SELECT_LEFT_Chars"
+  },
+  "My_SELECT_RIGHT2LEFT_Chars": {
+    "prefix": "My_SELECT_RIGHT2LEFT_Chars",
+    "body": ["SELECT RIGHT(LEFT(${1:COLUMN1},5),4) FROM ${0:TABLE};"],
+    "description": "My_SELECT_RIGHT2LEFT_Chars"
+  },
+  "My_SELECT_LIKE": {
+    "prefix": "My_SELECT_LIKE",
+    "body": [
+      "SELECT ${1:COLUMN}",
+      "FROM ${2:TABLE}",
+      "WHERE ${1:COLUMN} LIKE \"%${0:VALUE}%\";"
+    ],
+    "description": "My_SELECT_LIKE"
+  },
+  "My_SELECT_CONCAT": {
+    "prefix": "My_SELECT_CONCAT",
+    "body": [
+      "SELECT CONCAT(\"{1:VALUE}\", LEFT({2:COLUMN1}, 1), \".\", {3:COLUMN2})",
+      "FROM {0:TABLE};"
+    ],
+    "description": "My_SELECT_CONCAT"
+  },
+  "My_SELECT_UNION": {
+    "prefix": "My_SELECT_UNION",
+    "body": [
+      "SELECT ${1:COLUMN1} AS ${2:ALIAS}",
+      "FROM ${3:TABLE1}",
+      "UNION",
+      "SELECT ${4:COLUMN2}",
+      "FROM ${0:TABLE2};"
+    ],
+    "description": "My_SELECT_UNION"
+  },
+  "My_SELECT_UNION_ALL": {
+    "prefix": "My_SELECT_UNION",
+    "body": [
+      "SELECT ${1:COLUMN1} AS ${2:ALIAS}",
+      "FROM ${3:TABLE1}",
+      "UNION ALL",
+      "SELECT ${4:COLUMN2}",
+      "FROM ${0:TABLE2};"
+    ],
+    "description": "My_SELECT_UNION"
+  },
+  "My_SELECT_UNION_LEFTREIGHT_FullJoin": {
+    "prefix": "My_SELECT_UNION_LEFTREIGHT_FullJoin",
+    "body": [
+      "SELECT ",
+      "    ${1:TABLE1}.${3:COLUMN1},",
+      "    ${1:TABLE1}.${4:COLUMN2},",
+      "    ${2:TABLE2}.${5:COLUMN3},",
+      "    ${2:TABLE2}.${6:COLUMN4}",
+      "FROM",
+      "    ${1:TABLE1} LEFT JOIN ${0:TABLE3} ON ${1:TABLE1}.${7:COLUMN5}=${0:TABLE3}.${7:COLUMN5}",
+      "    LEFT JOIN ${2:TABLE2} ON ${2:TABLE2}.${8:COLUMN6}=${0:TABLE3}.${8:COLUMN6}",
+      "",
+      "UNION",
+      "",
+      "SELECT ",
+      "    ${1:TABLE1}.${3:COLUMN1},",
+      "    ${1:TABLE1}.${4:COLUMN2},",
+      "    ${2:TABLE2}.${5:COLUMN3},",
+      "    ${2:TABLE2}.${6:COLUMN4}",
+      "FROM",
+      "    ${1:TABLE1} RIGHT JOIN ${0:TABLE3} ON ${1:TABLE1}.${7:COLUMN5}=${0:TABLE3}.${7:COLUMN5}",
+      "    RIGHT JOIN ${2:TABLE2} ON ${2:TABLE2}.${8:COLUMN6}=${0:TABLE3}.${8:COLUMN6};"
+    ],
+    "description": "My_SELECT_UNION_LEFTREIGHT_FullJoin"
+  },
+  "My_SELECT_CURDATE_Function": {
+    "prefix": "My_SELECT_CURDATE_Function",
+    "body": ["SELECT CURDATE();"],
+    "description": "My_SELECT_CURDATE_Function"
+  },
+  "My_ALTER_DEFAULT": {
+    "prefix": "My_ALTER_DEFAULT",
+    "body": [
+      "ALTER TABLE ${1:TABLE1} CHANGE ${2:COLUMN} ${2:COLUMN} FLOAT(11, 2) DEFAULT 10;"
+    ],
+    "description": "My_ALTER_DEFAULT"
+  },
+  "My_ALTER_RESTRICT_ON": {
+    "prefix": "My_ALTER_RESTRICT_ON",
+    "body": [
+      "ALTER TABLE ${1:TABLE} CHANGE ${2:COLUMN} ${2:COLUMN} FLOAT(11, 2) ON ${3|DELETE,UPDATE|} RESTRICT;"
+    ],
+    "description": "My_ALTER_RESTRICT_ON"
+  },
+  "My_SET_FOREIGN_KEY_CHECKS": {
+    "prefix": "My_SET_FOREIGN_KEY_CHECKS",
+    "body": ["SET FOREIGN_key_checks=${1|0,1|};"],
+    "description": "My_SET_FOREIGN_KEY_CHECKS"
+  },
+  "My_SHOW_CREATE_TABLE": {
+    "prefix": "My_SHOW_CREATE_TABLE",
+    "body": ["SHOW CREATE TABLE ${0:TABLE};"],
+    "description": "My_SHOW_CREATE_TABLE"
+  },
+  "My_CREATE_DB": {
+    "prefix": "My_CREATE_DB",
+    "body": ["CREATE DATABASE ${0:DB};"],
+    "description": "My_CREATE_DB"
+  },
+  "My_DROP_DB": {
+    "prefix": "My_DROP_DB",
+    "body": ["DROP DATABASE ${0:DB};"],
+    "description": "My_DROP_DB"
+  },
+  "My_CREATE_TABLE": {
+    "prefix": "My_CREATE_TABLE_PK",
+    "body": [
+      "CREATE TABLE ${1:TABLE}",
+      "(",
+      "${1:PK}_id ${2|INT(9),VARCHAR(255),FLOAT(11,2),DATE|} NOT NULL AUTO_INCREMENT,",
+      "${0:COLUMN1} ${3|INT(9),VARCHAR(255),FLOAT(11,2),DATE|} NOT NULL,",
+      "PRIMARY KEY(${1:PK}_id)",
+      ");"
+    ],
+    "description": "My_CREATE_TABLE_PK"
+  },
+  "My_CREATE_TABLE_FK": {
+    "prefix": "My_CREATE_TABLE_FK",
+    "body": [
+      "CREATE TABLE ${1:TABLE}",
+      "(",
+      "${2:PK}_id ${3|INT(9),VARCHAR(255),FLOAT(11,2),DATE|} NOT NULL AUTO_INCREMENT,",
+      "${5:FK}_id ${4|INT(9),VARCHAR(255),FLOAT(11,2),DATE|} NOT NULL,",
+      "PRIMARY KEY(${2:PK}_id),",
+      "FOREIGN KEY(${5:FK}_id) REFERENCES ${0:FOREIGN_TABLE}(${5:FK}_id)",
+      ");"
+    ],
+    "description": "My_CREATE_TABLE_FK"
+  },
+  "My_DROP_TABLE": {
+    "prefix": "My_DROP_TABLE",
+    "body": ["DROP TABLE ${1:DB}.${1:TABLE};"],
+    "description": "My_DROP_TABLE"
+  },
+  "My_INSERT_INTO": {
+    "prefix": "My_INSERT_INTO",
+    "body": [
+      "INSERT INTO ${1:TABLE} (${2:COLUMN1}, ${3:COLUMN1}, ${4:COLUMN1})",
+      "VALUES (${5:VALUE1}, \"${6:VALUE2}\", ${0:VALUE3});"
+    ],
+    "description": "My_INSERT_INTO"
+  },
+  "My_UPDATE": {
+    "prefix": "My_UPDATE",
+    "body": [
+      "UPDATE ${1:TABLE}",
+      "SET ${2:COLUMN1} = \"${3:VALUE1}\",",
+      "    ${4:COLUMN2} = ${0:VALUE2};"
+    ],
+    "description": "My_UPDATE"
+  },
+  "My_UPDATE_WHERE": {
+    "prefix": "My_UPDATE_WHERE",
+    "body": [
+      "UPDATE ${1:TABLE}",
+      "SET ${2:COLUMN1} = \"${3:VALUE1}\",",
+      "    ${4:COLUMN2} = ${5:VALUE2};",
+      "WHERE ${6:COLUMNX} = \"${0:VALUEX}\";"
+    ],
+    "description": "My_UPDATE_WHERE"
+  },
+  "My_DELETE_WHERE": {
+    "prefix": "My_DELETE_WHERE",
+    "body": ["DELETE FROM ${1:TABLE}", "WHERE ${2:COLUMN1} = ${0:VALUE1};"],
+    "description": "My_DELETE_WHERE"
+  },
+  "My_DELETE_or_TRUNCATE": {
+    "prefix": "My_DELETE_or_TRUNCATE",
+    "body": ["DELETE FROM ${0:TABLE};", "TRUNCATE ${0:TABLE};"],
+    "description": "My_DELETE_or_TRUNCATE"
+  },
+  "My_ALTER_TABLE_CHANGE": {
+    "prefix": "My_ALTER_TABLE_CHANGE",
+    "body": [
+      "ALTER TABLE ${1:TABLE} CHANGE ${2:COLUMN_OLD} ${0:COLUMN_NEW} varchar(250);"
+    ],
+    "description": "My_ALTER_TABLE_CHANGE"
+  },
+  "My_ALTER_TABLE_ADD": {
+    "prefix": "My_ALTER_TABLE_ADD",
+    "body": [
+      "ALTER TABLE ${1:TABLE} ADD ${0:COLUMN_NEW} VARCHAR(20) NOT NULL;"
+    ],
+    "description": "My_ALTER_TABLE_ADD"
+  },
+  "My_ALTER_TABLE_DROP": {
+    "prefix": "My_ALTER_TABLE_DROP",
+    "body": ["ALTER TABLE ${1:TABLE} DROP ${0:COLUMN_OLD};"],
+    "description": "My_ALTER_TABLE_DROP"
+  },
+  "My_ALTER_TABLE_RENAME": {
+    "prefix": "My_ALTER_TABLE_RENAME",
+    "body": [
+      "RENAME TABLE ${1:TABLE_OLD} TO ${0:TABLE_NEW};",
+      "ALTER TABLE ${1:TABLE_OLD} RENAME ${0:TABLE_NEW};"
+    ],
+    "description": "My_ALTER_TABLE_RENAME"
+  },
+  "My_ALTER_TABLE_ADD_FK": {
+    "prefix": "My_ALTER_TABLE_ADD_FK",
+    "body": [
+      "ALTER TABLE ${1:TABLE} ADD FOREIGN KEY(${0:FK}) ",
+      "REFERENCES ${2:TABLE}(${0:FK});"
+    ],
+    "description": "My_ALTER_TABLE_ADD_FK"
+  },
+  "My_TRANSACTION": {
+    "prefix": "My_TRANSACTION",
+    "body": ["START TRANSACTION;", "${0:/*TRANSACTION SQL CODE*/}", "COMMIT;"],
+    "description": "My_TRANSACTION"
+  }
+}

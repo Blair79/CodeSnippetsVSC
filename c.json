@@ -1,0 +1,528 @@
+{
+  /* Stand 09.04.2022
+  / Place your snippets for c here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${1:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	https://snippet-generator.app/
+
+	The body of a snippet supports the following features:
+	1. Tab Stops												$1,$2,$3... $0
+	2. Mirrored Tab Stops										$1,$2,$1(same value like in 1st)... $0
+	3. Placeholders												${1:default} (can be nested, like this: ${1:first ${2:second}})
+	4. Choices													${1|yes,no|}
+	5. Variables:												${TM_SELECTED_TEXT:default}
+						TM_SELECTED_TEXT: The currently selected text or the empty string,
+						TM_CURRENT_LINE: The contents of the current line,
+						TM_CURRENT_WORD: The contents of the word under cursor or the empty string,
+						TM_LINE_INDEX: The zero-index based line number,
+						TM_LINE_NUMBER: The one-index based line number,
+						TM_FILENAME: The filename of the current document,
+						TM_FILENAME_BASE: The filename of the current document without its extensions,
+						TM_DIRECTORY: The directory of the current document,
+						TM_FILEPATH: The full file path of the current document,
+						CLIPBOARD: The contents of your clipboard,
+						WORKSPACE_NAME: The name of the opened workspace or folder.
+
+						The following time-related variables can be used:
+
+						CURRENT_YEAR: The current year,
+						CURRENT_YEAR_SHORT: The current year's last two digits,
+						CURRENT_MONTH: The month as two digits (example '07'),
+						CURRENT_MONTH_NAME: The full name of the month (example 'July'),
+						CURRENT_MONTH_NAME_SHORT: The short name of the month (example 'Jul'),
+						CURRENT_DATE: The day of the month,
+						CURRENT_DAY_NAME: The name of day (example 'Monday'),
+						CURRENT_DAY_NAME_SHORT: The short name of the day (example 'Mon'),
+						CURRENT_HOUR: The current hour in 24-hour clock format,
+						CURRENT_MINUTE: The current minute,
+						CURRENT_SECOND: The current second,
+						CURRENT_SECONDS_UNIX: The number of seconds since the Unix epoch.
+
+						The following comment variables can be used. They honour the syntax of the document's language:
+
+						BLOCK_COMMENT_START: For example, <!-- in HTML,
+						BLOCK_COMMENT_END: For example , --> in HTML,
+						LINE_COMMENT: For example, // in JavaScript.
+	*/
+  "meinCode": {
+    "prefix": "My_Code",
+    "body": [
+      "for (int ${1:variable} = 0; ${2:variable} < 5; ${3|d,c,u,f,s|}++)",
+      "{",
+      "    /* mein text */",
+      "}"
+    ],
+    "description": "meinCode dies ist ein ganz wichtoiger CodeSchnipsel"
+  },
+  "W_CodePage1252": {
+    "prefix": "My_W_CodePage1252",
+    "body": ["system(\"chcp 1252\");"],
+    "description": "CodePage1252"
+  },
+  "W_CodePageUTF-8": {
+    "prefix": "My_W_CodePageUTF-8",
+    "body": ["system(\"chcp 65001\");"],
+    "description": "CodePageUTF-8"
+  },
+  "C_Clear Screen": {
+    "prefix": "My_C_ClearScreen",
+    "body": ["system(\"cls\");"],
+    "description": "Clears Screen"
+  },
+  "C_Leere Zeile": {
+    "prefix": "My_C_LeerZeile",
+    "body": ["printf(\"\\n\");"],
+    "description": "Leere Zeile"
+  },
+  "C_Scanf mit Pufferleerung": {
+    "prefix": "My_C_Scanf",
+    "body": [
+      "scanf(\"%${1:Laenge}${2:[^\\n]}${3|d,c,u,f,s|}\", &${4|VariableName ,ArrayName[0]|});",
+      "fflush(stdin);"
+    ],
+    "description": "Scanf mit Pufferleerung"
+  },
+  "C_Printf": {
+    "prefix": "My_C_Printf",
+    "body": ["printf(\"${0:Hello World}\");"],
+    "description": "Printf"
+  },
+  "C_Printf_Wert": {
+    "prefix": "My_C_Printf_Wert",
+    "body": ["printf(\"%${1|d,c,f,s,p|}\",${2|&VariableName,VariableName|});"],
+    "description": "Printf_Wert"
+  },
+  "C_StringCopy": {
+    "prefix": "My_C_Strcpy",
+    "body": ["strcpy(${1:ZielString}, ${0:QuellString});"],
+    "description": "C_StringCopy"
+  },
+  "C_StringCatenation": {
+    "prefix": "My_C_strcat",
+    "body": ["strcat(${1:ZielString}, ${0:QuellString});"],
+    "description": "C_StringCatenation"
+  },
+  "C_StringLength": {
+    "prefix": "My_C_StringLength",
+    "body": ["strlen(${0:String})"],
+    "description": "C_StringLength"
+  },
+  "C_StringCompare": {
+    "prefix": "My_C_StringCompare",
+    "body": ["strcmp(${1:VergleichsString1}, ${0:VergleichsString2})"],
+    "description": "C_StringCompare 0 identisch,<0 alphabetische Reihenfolge, >0 umgekehrt alphabetische Reihenfolge"
+  },
+  "C_FileOpen": {
+    "prefix": "My_C_FileOpen",
+    "body": [
+      "    FILE *${1:VariableName};",
+      "    char c;// code 4 r",
+      "    ${1:VariableName} = fopen(\"${2:FileName}.${3:Suffix}\", \"${4|w,a,r|}\");",
+      "    if (${1:VariableName} == NULL)",
+      "        printf(\"Fehler beim Öffnen der Datei\\n\");",
+      "    else",
+      "    {",
+      "        ${0:/* code 4 a & w */} fputc('a', ${1:VariableName});",
+      "        ${0:/* code 4 r*/} while((c=fgetc(VariableName))!=EOF) printf(\"%c\" ,c);",
+      "        fclose(${1:VariableName});",
+      "    }"
+    ],
+    "description": "C_FileOpen"
+  },
+  "C_Struct": {
+    "prefix": "My_C_Struct",
+    "body": ["typedef struct", "{", "    /* data */", "}${0:NAME};"],
+    "description": "C_Struct"
+  },
+  "C_Library": {
+    "prefix": "My_C_Library",
+    "body": ["#include \"${0:MyLib}.h\""],
+    "description": "C_Library"
+  },
+  "ESC_Zeilenumbruch": {
+    "prefix": "My_ESC_Zeilenumbruch",
+    "body": ["\\n"],
+    "description": "ESC_Zeilenumbruch"
+  },
+  "ESC_Tab": {
+    "prefix": "My_ESC_Tab",
+    "body": ["\\t"],
+    "description": "ESC_Tab"
+  },
+  "ESC_NullTerminator": {
+    "prefix": "My_ESC_NullTerminator",
+    "body": ["\\0"],
+    "description": "ESC_NullTerminator"
+  },
+  "Define_ColorRED": {
+    "prefix": "My_t_RED",
+    "body": ["#define t_RED \"\\x1b[31m\""],
+    "description": "Define_ColorRED"
+  },
+  "Define_ColorGREEN": {
+    "prefix": "My_t_GREEN",
+    "body": ["#define t_GREEN \"\\x1b[32m\""],
+    "description": "Define_ColorGREEN"
+  },
+  "Define_ColorYELLOW": {
+    "prefix": "My_t_YELLOW",
+    "body": ["#define t_YELLOW \"\\x1b[33m\""],
+    "description": "Define_ColorYELLOW"
+  },
+  "Define_ColorBLUE": {
+    "prefix": "My_t_BLUE",
+    "body": ["#define t_BLUE \"\\x1b[34m\""],
+    "description": "Define_ColorBLUE"
+  },
+  "Define_ColorMAGENTA": {
+    "prefix": "My_t_MAGENTA",
+    "body": ["#define t_MAGENTA \"\\x1b[35m\""],
+    "description": "Define_ColorMAGENTA"
+  },
+  "Define_ColorCYAN": {
+    "prefix": "My_t_CYAN",
+    "body": ["#define t_CYAN \"\\x1b[36m\""],
+    "description": "Define_ColorCYAN"
+  },
+  "Define_ColorRESET": {
+    "prefix": "My_t_RESET",
+    "body": ["#define t_RESET \"\\x1b[0m\""],
+    "description": "Define_ColorRESET"
+  },
+  "Declare_Variable": {
+    "prefix": "My_Declare_Variable",
+    "body": [
+      "${1|char,int,long,long long,float,double,long double|} ${0:Name};"
+    ],
+    "description": "Declare_Variable"
+  },
+  "Declare_VariableList": {
+    "prefix": "My_Declare_VariableList",
+    "body": [
+      "${1|char,int,long,long long,float,double,long double|} ${2:Name},${3:Name},${0:Name};"
+    ],
+    "description": "Declare_VariableList"
+  },
+  "Declare_VariableInit": {
+    "prefix": "My_Declare_VariableInit",
+    "body": [
+      "${1|char,int,long,long long,float,double,long double|} ${2:Name}=${0:Wert};"
+    ],
+    "description": "Declare_VariableInit"
+  },
+  "Declare_Array": {
+    "prefix": "My_Declare_Array",
+    "body": [
+      "${1|char,int,long,long long,float,double,long double|} ${2:Array_Name}[${0:Laenge}];"
+    ],
+    "description": "Declare_Array"
+  },
+  "Declare_ArrayInit": {
+    "prefix": "My_Declare_ArrayInit",
+    "body": [
+      "${1|char,int,long,long long,float,double,long double|} ${2:Array_Name}[] = {${3:a},${4:b},${0:c}};"
+    ],
+    "description": "Declare_ArrayInit"
+  },
+  "Function_Main": {
+    "prefix": "My_FunctionMain",
+    "body": [
+      "#include <stdio.h>   //Standard Input Output",
+      "#include <stdlib.h>  //C Standard-Bibliothek",
+      "#include <windows.h> //Windows API",
+      "#include <conio.h>   //function getch()",
+      "#include <time.h>    //init Random Function",
+      "#include <stdbool.h> //4 BeepPiano",
+      "//#include <unistd.h>  // for usleep in Darude_Sandstorm",
+      "#include <string.h>  //String Functions",
+      "",
+      "int main()",
+      "{",
+      "    system(\"chcp 65001\");",
+      "    system(\"cls\");",
+      "",
+      "    ${0://Code}",
+      "",
+      "    printf(\"\\n\");",
+      "    system(\"pause\");",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Function_Main"
+  },
+  "Function_TemplateReturn": {
+    "prefix": "My_FunctionTemplateReturn",
+    "body": [
+      "${1|char,int,long,long long,float,double,long double|} ${2:Name}()",
+      "{",
+      "    ${0:/*Code*/}",
+      "",
+      "    return ${3:0};",
+      "}"
+    ],
+    "description": "Function_TemplateReturn"
+  },
+  "Function_TemplateVoid": {
+    "prefix": "My_FunctionTemplateVoid",
+    "body": ["void ${1:Name}()", "{", "", "    ${0:/*Code*/}", "", "}"],
+    "description": "Function_TemplateVoid"
+  },
+  "Function_hash_sum_mod10": {
+    "prefix": "My_FunctionHashSumMod10",
+    "body": [
+      "int hash_sum_mod10(int anzahl, int ziffer[])",
+      "{",
+      "    int hashwert;",
+      "    for (int i = 0; i < anzahl; i++)",
+      "    {",
+      "        hashwert += ziffer[i];",
+      "    }",
+      "    return hashwert %= 10;",
+      "}"
+    ],
+    "description": "Function_hash_sum_mod10"
+  },
+  "Function_hash_sum_mod10_ctrl": {
+    "prefix": "My_FunctionHashSumMod10CTRL",
+    "body": [
+      "int hash_sum_mod10_ctrl(int anzahl, int ziffer[])",
+      "{",
+      "    int hashwert;",
+      "    for (int i = 0; i < anzahl - 1; i++)",
+      "    {",
+      "        hashwert += ziffer[i];",
+      "    }",
+      "    hashwert %= 10;",
+      "    if (hashwert != ziffer[anzahl - 1])",
+      "        return 0;",
+      "    else",
+      "        return 1;",
+      "}"
+    ],
+    "description": "Functionhash_sum_mod10_ctrl"
+  },
+  "Function_nextChar": {
+    "prefix": "My_FunctionNextChar",
+    "body": [
+      "void nextCHAR(char *pointer)",
+      "{",
+      "*pointer= *pointer+1; // DEREFERENZIERUNG des Pointers",
+      "}"
+    ],
+    "description": "Function_nextChar"
+  },
+  "Function_prevChar": {
+    "prefix": "My_FunctionPrevChar",
+    "body": [
+      "void prevCHAR(char *pointer)",
+      "{",
+      "*pointer= *pointer-1; // DEREFERENZIERUNG des Pointers",
+      "}"
+    ],
+    "description": "Function_prevChar"
+  },
+  "Function_countCharX": {
+    "prefix": "My_FunctionCountCharX",
+    "body": [
+      "int countCharX(char text[], char X)",
+      "{",
+      "    int i = 0, anzahl = 0;",
+      "    while (text[i] != '\\0')",
+      "    {",
+      "        if (text[i] == X)",
+      "            anzahl++;",
+      "        i++;",
+      "    }",
+      "    return anzahl;",
+      "}"
+    ],
+    "description": "Function_countCharX"
+  },
+  "Function_fakultaet_iterativ": {
+    "prefix": "My_FunctionFakultaet_iterativ",
+    "body": [
+      "int fakultaet_iterativ(int n)",
+      "{",
+      "    int f = 1, i;",
+      "    for (i = 2; i <= n; i++)",
+      "    {",
+      "        f = f * i;",
+      "    }",
+      "    return f;",
+      "}"
+    ],
+    "description": "Function_fakultaet_iterativ"
+  },
+  "Function_fakultaet_rekursiv": {
+    "prefix": "My_FunctionFakultaet_rekursiv",
+    "body": [
+      "int fakultaet_rekursiv(int n)",
+      "{",
+      "    if (n < 2)",
+      "        return 1;",
+      "    return n * fakultaet_rekursiv(n - 1);",
+      "}"
+    ],
+    "description": "Function_fakultaet_rekursiv"
+  },
+  "Function_RandomZahlgeneratorMinMax": {
+    "prefix": "My_FunctionRandom",
+    "body": [
+      "int calc_RND(int min, int max)",
+      "{",
+      "// #include <time.h>",
+      "// RandomInitialisierung gehört in Main",
+      "    //srand(time(NULL));",
+      "    //rand();",
+      "    return rand() % (max - min + 1) + min;",
+      "}"
+    ],
+    "description": "RandomZahlgenerator min Min Max"
+  },
+  "Function_Bubblesort": {
+    "prefix": "My_FunctionBubblesort",
+    "body": [
+      "void bubblesort(int *array, int length)",
+      "{",
+      "    int i, j, tmp;",
+      "",
+      "    for (i = 1; i < length; i++)",
+      "    {",
+      "        for (j = 0; j < length - 1; j++)",
+      "        {",
+      "            if (array[j] > array[j + 1])",
+      "            {",
+      "                tmp = array[j];",
+      "                array[j] = array[j + 1];",
+      "                array[j + 1] = tmp;",
+      "            }",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "Bubblesort"
+  },
+  "Function_fuelleArrayRND": {
+    "prefix": "My_FunctionFuelleArrayRND",
+    "body": [
+      "void fuelleArrayRND(int array[], int length)",
+      "{",
+      "    for (int i = 0; i < length; i++)",
+      "    {",
+      "        array[i]=calc_RND(1,100);",
+      "",
+      "        printf(\"%d\", array[i]);",
+      "        if (i != length - 1)",
+      "        {",
+      "            printf(\", \");",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "fuelleArrayRND"
+  },
+  "Function_printArray": {
+    "prefix": "My_FunctionPrintArray",
+    "body": [
+      "void printArray(int array[], int length)",
+      "{",
+      "    for (int i = 0; i < length; i++)",
+      "    {",
+      "        printf(\"%d\", array[i]);",
+      "        if (i != length - 1)",
+      "        {",
+      "            printf(\", \");",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "printArray"
+  },
+  "Function_Quicksort": {
+    "prefix": "My_FunctionQuicksort",
+    "body": [
+      "void quicksort(int number[25],int first,int last){",
+      "   int i, j, pivot, temp;",
+      "",
+      "   if(first<last){",
+      "      pivot=first;",
+      "      i=first;",
+      "      j=last;",
+      "",
+      "      while(i<j){",
+      "         while(number[i]<=number[pivot]&&i<last)",
+      "            i++;",
+      "         while(number[j]>number[pivot])",
+      "            j--;",
+      "         if(i<j){",
+      "            temp=number[i];",
+      "            number[i]=number[j];",
+      "            number[j]=temp;",
+      "         }",
+      "      }",
+      "",
+      "      temp=number[pivot];",
+      "      number[pivot]=number[j];",
+      "      number[j]=temp;",
+      "      quicksort(number,first,j-1);",
+      "      quicksort(number,j+1,last);",
+      "",
+      "   }",
+      "}"
+    ],
+    "description": "FunctionQuicksort"
+  },
+  "comment_Line": {
+    "prefix": "My_comment_Line",
+    "body": ["//"],
+    "description": "comment_Line"
+  },
+  "comment_Block": {
+    "prefix": "My_comment_Block",
+    "body": ["/**/"],
+    "description": "comment_Block"
+  },
+  "Block": {
+    "prefix": "My_Block",
+    "body": ["{", "  ${0:/*Code*/}", "}"],
+    "description": "Block"
+  },
+  "Char_2LowerCase": {
+    "prefix": "My_Char_2LowerCase",
+    "body": ["${0:'a'}+32"],
+    "description": "Char_2LowerCase"
+  },
+  "Char_2UpperCase": {
+    "prefix": "My_Char_2UpperCase",
+    "body": ["${0:'a'}-32"],
+    "description": "Char_2UpperCase"
+  },
+  "VSC_Shortcuts": {
+    "prefix": "My_VSC_Shortcuts",
+    "body": [
+      "//Multiline Cursor                     Strg+Alt+Up, Strg+Alt+Down",
+      "//MultilineCursor besser               Strg+Shift+Alt+ArrowKey",
+      "//Zeilen kopieren (hoch/runter)        Shift+Alt+Up, Shift+Alt+Down",
+      "//Selektion vergrößern/verkleinern     Shift+Alt+Left, Shift+Alt+Right",
+      "//Zeile auf/ab bewegen                 Alt+Up, Alt+Down",
+      "//Command Palette                      F1",
+      "//search symbols                       Strg+T",
+      "//find                                 Strg+F",
+      "//replace                              Strg+H",
+      "//alle gefundenen editieren            Alt+Enter",
+      "//Document format                      Shift+Alt+F"
+    ],
+    "description": "VSC_Shortcuts"
+  }
+}

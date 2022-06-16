@@ -1,0 +1,1426 @@
+{
+  /*
+	// Place your snippets for java here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	https://snippet-generator.app/
+
+	The body of a snippet supports the following features:
+	1. Tab Stops												$1,$2,$3... $0
+	2. Mirrored Tab Stops										$1,$2,$1(same value like in 1st)... $0
+	3. Placeholders												${1:default} (can be nested, like this: ${1:first ${2:second}})
+	4. Choices													${1|yes,no|}
+	5. Variables:												${TM_SELECTED_TEXT:default}
+						TM_SELECTED_TEXT: The currently selected text or the empty string,
+						TM_CURRENT_LINE: The contents of the current line,
+						TM_CURRENT_WORD: The contents of the word under cursor or the empty string,
+						TM_LINE_INDEX: The zero-index based line number,
+						TM_LINE_NUMBER: The one-index based line number,
+						TM_FILENAME: The filename of the current document,
+						TM_FILENAME_BASE: The filename of the current document without its extensions,
+						TM_DIRECTORY: The directory of the current document,
+						TM_FILEPATH: The full file path of the current document,
+						CLIPBOARD: The contents of your clipboard,
+						WORKSPACE_NAME: The name of the opened workspace or folder.
+
+						The following time-related variables can be used:
+
+						CURRENT_YEAR: The current year,
+						CURRENT_YEAR_SHORT: The current year's last two digits,
+						CURRENT_MONTH: The month as two digits (example '07'),
+						CURRENT_MONTH_NAME: The full name of the month (example 'July'),
+						CURRENT_MONTH_NAME_SHORT: The short name of the month (example 'Jul'),
+						CURRENT_DATE: The day of the month,
+						CURRENT_DAY_NAME: The name of day (example 'Monday'),
+						CURRENT_DAY_NAME_SHORT: The short name of the day (example 'Mon'),
+						CURRENT_HOUR: The current hour in 24-hour clock format,
+						CURRENT_MINUTE: The current minute,
+						CURRENT_SECOND: The current second,
+						CURRENT_SECONDS_UNIX: The number of seconds since the Unix epoch.
+
+						The following comment variables can be used. They honour the syntax of the document's language:
+
+						BLOCK_COMMENT_START: For example, <!-- in HTML,
+						BLOCK_COMMENT_END: For example , --> in HTML,
+						LINE_COMMENT: For example, // in JavaScript.
+	*/
+  "Java_Clear Screen": {
+    "prefix": "My_Java_ClearScreen",
+    "body": [
+      "//throws IOException, InterruptedException //Interfaces needed in Class",
+      "new ProcessBuilder(\"cmd\", \"/c\", \"cls\").inheritIO().start().waitFor();"
+    ],
+    "description": "Java_Clear Screen"
+  },
+  "Java_Ausgabe": {
+    "prefix": "My_Java_println",
+    "body": ["System.out.println(${TM_SELECTED_TEXT:\"${0:}\"});"],
+    "description": "Java_Ausgabe"
+  },
+  "Java_Eingabe": {
+    "prefix": "My_Java_readLine",
+    "body": ["System.console().readLine();"],
+    "description": "Java_Eingabe_readLine"
+  },
+  "Java_Library": {
+    "prefix": "My_Java_Library",
+    "body": ["import java.$0;"],
+    "description": "My_Java_Library"
+  },
+  "Java_getMethodName": {
+    "prefix": "My_Java_getMethodName",
+    "body": ["Thread.currentThread().getStackTrace()[1].getMethodName();"],
+    "description": "Java_getMethodName"
+  },
+  "Java_Scanner": {
+    "prefix": "My_Java_Scanner",
+    "body": [
+      "Scanner ${0:VariableName} = new Scanner(System.in);",
+      "System.out.print(\"Enter Something: \");",
+      "System.out.println(${0:VariableName}.nextLine());"
+    ],
+    "description": "Java_Scanner"
+  },
+  "Java_Java_AsciiCode": {
+    "prefix": "My_Java_AsciiCode",
+    "body": ["(int) 'a'"],
+    "description": "Java_Java_AsciiCode"
+  },
+  "Java_throwException": {
+    "prefix": "My_Java_throwException",
+    "body": [
+      "if (1 < 2) throw new ${1|Exception,NumberFormatException,NullPointerException,ArrayIndexOutOfBoundsException,IllegalStateException,ArithmeticException,IllegalArgumentException,InputMismatchException|}();"
+    ],
+    "description": "Java_throwException"
+  },
+  "Java_Enum": {
+    "prefix": "My_Java_Enum",
+    "body": [
+      "enum ${1:name} {",
+      "    enum1(${2:value}), enum2(${3:value});",
+      "",
+      "    private ${4|String,byte,short,int,long,char,float,double,boolean|} ${5:valueVariable};",
+      "",
+      "    ${1:name}(${4|String,byte,short,int,long,char,float,double,boolean|} ${5:valueVariable}) {",
+      "        this.${5:valueVariable} = ${5:valueVariable};",
+      "    }",
+      "",
+      "    public ${4|String,byte,short,int,long,char,float,double,boolean|} get${5:valueVariable}() {",
+      "        return this.${5:valueVariable};",
+      "    }",
+      "}"
+    ],
+    "description": "Java_Enum"
+  },
+  "Function_printEnumTypes": {
+    "prefix": "My_Function_printEnumTypes",
+    "body": [
+      "public static void printEnumTypes() {",
+      "        for (${1:EnumName} elementOfEnum : ${1:EnumName}.values()) {",
+      "            char begin = elementOfEnum.name().charAt(0);",
+      "            System.out.println(begin + elementOfEnum.name().substring(1).toLowerCase());",
+      "        }",
+      "    }"
+    ],
+    "description": "Function_printEnumTypes"
+  },
+  "Do_While_Repeat": {
+    "prefix": "My_do_while_repeat",
+    "body": [
+      "//boolean repeat=false;//VariableDeclaration",
+      "        do {",
+      "            repeat=false;",
+      "",
+      "        } while (repeat);"
+    ],
+    "description": "Do_While_Repeat"
+  },
+  "YearisLeap": {
+    "prefix": "My_YearisLeap",
+    "body": ["Year.isLeap(1997L);"],
+    "description": "YearisLeap"
+  },
+  "Sleep": {
+    "prefix": "My_Sleep",
+    "body": [
+      "try {",
+      "            Thread.sleep(2000);",
+      "        } catch (InterruptedException e) {",
+      "            e.printStackTrace();",
+      "        }"
+    ],
+    "description": "Sleep"
+  },
+  "Declare_Array_Jagged": {
+    "prefix": "My_Declare_Array_Jagged",
+    "body": ["int[][][] stadt = new int[3][][];"],
+    "description": "Declare_Array_Jagged"
+  },
+  "Array_Dim_Length": {
+    "prefix": "My_Array_Dim_Length",
+    "body": ["dim3[0].length"],
+    "description": "Array_Dim_Length"
+  },
+  "Random": {
+    "prefix": "My_Random",
+    "body": [
+      "Random random = new Random();",
+      "    arr[i] = random.nextInt(49) + 1;"
+    ],
+    "description": "Random"
+  },
+  "If_ternary": {
+    "prefix": "My_If_Ternary",
+    "body": ["variable = Expression1 ? Expression2: Expression3"],
+    "description": "If_ternary"
+  },
+  "ESC_Zeilenumbruch": {
+    "prefix": "My_ESC_Zeilenumbruch",
+    "body": ["\\n"],
+    "description": "ESC_Zeilenumbruch"
+  },
+  "ESC_Tab": {
+    "prefix": "My_ESC_Tab",
+    "body": ["\\t"],
+    "description": "ESC_Tab"
+  },
+  "Declare_Variable": {
+    "prefix": "My_Declare_Variable",
+    "body": [
+      "${1|String,byte,short,int,long,char,float,double,boolean|} ${0:Name};"
+    ],
+    "description": "Declare_Variable"
+  },
+  "Declare_VariableList": {
+    "prefix": "My_Declare_VariableList",
+    "body": [
+      "${1|String,byte,short,int,long,char,float,double,boolean|} ${2:Name},${3:Name},${0:Name};"
+    ],
+    "description": "Declare_VariableList"
+  },
+  "Declare_VariableInit": {
+    "prefix": "My_Declare_VariableInit",
+    "body": [
+      "${1|String,byte,short,int,long,char,float,double,boolean|} ${2:Name}=${0:Wert};"
+    ],
+    "description": "Declare_VariableInit"
+  },
+  "Declare_Array": {
+    "prefix": "My_Declare_Array",
+    "body": [
+      "${1|String,byte,short,int,long,char,float,double,boolean|}[] ${2:Array_Name} = new $1[${0:Laenge}];"
+    ],
+    "description": "Declare_Array"
+  },
+  "Declare_ArrayInit": {
+    "prefix": "My_Declare_ArrayInit",
+    "body": [
+      "${1|String,byte,short,int,long,char,float,double,boolean|}[] ${2:Array_Name} = {${3:a},${4:b},${0:c}};"
+    ],
+    "description": "Declare_ArrayInit"
+  },
+  "Declare_ArrayList": {
+    "prefix": "My_Declare_ArrayList",
+    "body": [
+      "ArrayList <${1|Integer,String|}> ${2:Array_Name}=new ArrayList<${1|Integer,String|}>();"
+    ],
+    "description": "DeclareArrayList"
+  },
+  "Class_Menu": {
+    "prefix": "My_Class_Menu",
+    "body": [
+      "class Menu {",
+      "    private String title;",
+      "    private ArrayList<String> menuPointList = new ArrayList<String>();",
+      "    private boolean isRepeat = false;",
+      "    private boolean isInputValue = false;",
+      "    private String inputString = \"\";",
+      "",
+      "    public Menu(String title) {",
+      "        this.title = title;",
+      "        this.isInputValue = true;",
+      "    }",
+      "",
+      "    public Menu(String title, ArrayList<String> menuPointList) {",
+      "        this.title = title;",
+      "        this.menuPointList = menuPointList;",
+      "    }",
+      "",
+      "    public String showMenu() {",
+      "        String returnValue = \"\";",
+      "",
+      "        do {",
+      "            isRepeat = false;",
+      "",
+      "            if (isInputValue) {",
+      "                System.out.print(title);",
+      "                returnValue = System.console().readLine();",
+      "                return returnValue;",
+      "            } else {",
+      "                System.out.println(title);",
+      "",
+      "                int i = 0;",
+      "                for (String elementOfMenuPointList : menuPointList) {",
+      "                    System.out.println(++i + \".\\t\" + elementOfMenuPointList);",
+      "                }",
+      "                try {",
+      "                    returnValue = System.console().readLine();",
+      "                } catch (Exception e) {",
+      "                    // e.getStackTrace();",
+      "                    System.out.println(e.getMessage());",
+      "                    isRepeat = true;",
+      "                }",
+      "            }",
+      "        } while (isRepeat);",
+      "        return returnValue;",
+      "    }",
+      "",
+      "    public ArrayList<String> getMenuPointList() {",
+      "        return menuPointList;",
+      "    }",
+      "",
+      "    @Override",
+      "    protected void finalize() {",
+      "        System.out.println(\"Menu gelöscht\");",
+      "",
+      "    }",
+      "}"
+    ],
+    "description": "My_Class_Menu"
+  },
+  "FunctionMain": {
+    "prefix": "My_FunctionMain",
+    "body": [
+      "public class ${1:MainClassName} {",
+      "    public static void main(String[] args){",
+      "        ${0:/* Code */}",
+      "    }",
+      "}"
+    ],
+    "description": "FunctionMain"
+  },
+  "Function_CLS": {
+    "prefix": "My_Function_CLS",
+    "body": [
+      "public static void cls() throws IOException, InterruptedException {",
+      "        new ProcessBuilder(\"cmd\", \"/c\", \"cls\").inheritIO().start().waitFor();",
+      "    }"
+    ],
+    "description": "Function_CLS"
+  },
+  "Function_isConsonant": {
+    "prefix": "My_Function_isConsonant",
+    "body": [
+      "public static boolean isConsonant(char ch) {",
+      "        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')",
+      "            return false;",
+      "        return true;",
+      "    }"
+    ],
+    "description": "Function_isConsonant"
+  },
+  "Function_pq_formel": {
+    "prefix": "My_Function_pq_formel",
+    "body": [
+      "public static void pq_formel(double a, double b, double c) {",
+      "        double root1, root2;",
+      "",
+      "        // calculate the determinant (b2 - 4ac)",
+      "        double determinant = b * b - 4 * a * c;",
+      "",
+      "        // check if determinant is greater than 0",
+      "        if (determinant > 0) {",
+      "",
+      "            // two real and distinct roots",
+      "            root1 = (-b + Math.sqrt(determinant)) / (2 * a);",
+      "            root2 = (-b - Math.sqrt(determinant)) / (2 * a);",
+      "",
+      "            System.out.format(\"root1 = %.2f and root2 = %.2f\", root1, root2);",
+      "        }",
+      "",
+      "        // check if determinant is equal to 0",
+      "        else if (determinant == 0) {",
+      "",
+      "            // two real and equal roots",
+      "            // determinant is equal to 0",
+      "            // so -b + 0 == -b",
+      "            root1 = root2 = -b / (2 * a);",
+      "            System.out.format(\"root1 = root2 = %.2f;\", root1);",
+      "        }",
+      "",
+      "        // if determinant is less than zero",
+      "        else {",
+      "",
+      "            // roots are complex number and distinct",
+      "            double real = -b / (2 * a);",
+      "            double imaginary = Math.sqrt(-determinant) / (2 * a);",
+      "            System.out.format(\"root1 = %.2f+%.2fi\", real, imaginary);",
+      "            System.out.format(\"\\nroot2 = %.2f-%.2fi\", real, imaginary);",
+      "        }",
+      "    }"
+    ],
+    "description": "Function_pq_formel"
+  },
+  "Function_Quersumme": {
+    "prefix": "My_Function_Quersumme",
+    "body": [
+      "public static int berechneQuersumme(int zahl) {",
+      "        int result = 0;",
+      "        while (0 != zahl) {",
+      "            result = result + (zahl % 10);",
+      "            zahl = zahl / 10;",
+      "        }",
+      "        return result;",
+      "    }"
+    ],
+    "description": "Function_Quersumme"
+  },
+  "Function_Round": {
+    "prefix": "My_Function_Round",
+    "body": [
+      "public double round(double value, int decimalPoints) {",
+      "        double d = Math.pow(10, decimalPoints);",
+      "        return Math.round(value * d) / d;",
+      "    }"
+    ],
+    "description": "Function_Round"
+  },
+  "Function_isAlphabet": {
+    "prefix": "My_Function_isAlphabet",
+    "body": [
+      "public static boolean isAlphabet(char ch) {",
+      "        if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))",
+      "            return true;",
+      "        return false;",
+      "    }"
+    ],
+    "description": "Function_isAlphabet"
+  },
+  "Function_sumNaturalNumbers": {
+    "prefix": "My_Function_sumNaturalNumbers",
+    "body": [
+      "public static int sumNaturalNumbers(int num) {",
+      "        int sum = 0;",
+      "        for (int i = 1; i <= num; ++i) {",
+      "            sum += i;",
+      "        }",
+      "        return sum;",
+      "    }"
+    ],
+    "description": "Function_sumNaturalNumbers"
+  },
+  "Function_displayFibonacci": {
+    "prefix": "My_Function_displayFibonacci",
+    "body": [
+      "public static void displayFibonacci(int n) {",
+      "        int firstTerm = 0, secondTerm = 1;",
+      "        System.out.println(\"Fibonacci Series till \" + n + \" terms:\");",
+      "",
+      "        for (int i = 1; i <= n; ++i) {",
+      "            System.out.print(firstTerm + \", \");",
+      "",
+      "            // compute the next term",
+      "            int nextTerm = firstTerm + secondTerm;",
+      "            firstTerm = secondTerm;",
+      "            secondTerm = nextTerm;",
+      "        }",
+      "    }"
+    ],
+    "description": "Function_displayFibonacci"
+  },
+  "Function_LCM": {
+    "prefix": "My_Function_LCM",
+    "body": [
+      "public static int GCD(int n1, int n2) {",
+      "            // Always set to positive",
+      "            n1 = (n1 > 0) ? n1 : -n1;",
+      "            n2 = (n2 > 0) ? n2 : -n2;",
+      "            while (n1 != n2) {",
+      "                if (n1 > n2) {",
+      "                    n1 -= n2;",
+      "                } else {",
+      "                    n2 -= n1;",
+      "                }",
+      "            }",
+      "            return n1;",
+      "        }",
+      "    public static int LCM(int n1, int n2) {",
+      "        return (n1 * n2) / GCD(n1, n2);",
+      "    }"
+    ],
+    "description": "Function_LCM"
+  },
+  "Function_displayUpperCaseAlphabet": {
+    "prefix": "My_Function_displayUpperCaseAlphabet",
+    "body": [
+      "public static void displayUpperCaseAlphabet() {",
+      "    for(char ch = 'A'; ch <= 'Z'; ++ch){",
+      "      System.out.print(ch + \" \");",
+      "    }",
+      "}"
+    ],
+    "description": "Function_displayUppercaseAlphabet"
+  },
+  "Function_displayLowerCaseAlphabet": {
+    "prefix": "My_Function_displayLowerCaseAlphabet",
+    "body": [
+      "public static void displayLowerCaseAlphabet() {",
+      "    for(char ch = 'a'; ch <= 'z'; ++ch){",
+      "      System.out.print(ch + \" \");",
+      "    }",
+      "}"
+    ],
+    "description": "Function_displayLowerCaseAlphabet"
+  },
+  "Function_countNumberOfDigits": {
+    "prefix": "My_Function_countNumberOfDigits",
+    "body": [
+      "public static int countNumberOfDigits(int num) {",
+      "    //noLeading Zeros",
+      "    int count = 0;",
+      "    for(; num != 0; num/=10, ++count);",
+      "    return count;",
+      "}"
+    ],
+    "description": "Function_countNumberOfDigits"
+  },
+  "Function_reverseNumber": {
+    "prefix": "My_Function_reverseNumber",
+    "body": [
+      "public static int reverseNumber(int num) {",
+      "        int reversed = 0;",
+      "        for (; num != 0; num /= 10) {",
+      "            int digit = num % 10;",
+      "            reversed = reversed * 10 + digit;",
+      "        }",
+      "        return reversed;",
+      "    }"
+    ],
+    "description": "Function_reverseNumber"
+  },
+  "Function_isStringPalindrome": {
+    "prefix": "My_Function_isStringPalindrome",
+    "body": [
+      "public static boolean isStringPalindrome(String str) {",
+      "        String reverseStr = \"\";",
+      "",
+      "        int strLength = str.length();",
+      "",
+      "        for (int i = (strLength - 1); i >= 0; --i) {",
+      "            reverseStr = reverseStr + str.charAt(i);",
+      "        }",
+      "",
+      "        if (str.toLowerCase().equals(reverseStr.toLowerCase())) {",
+      "            return true;",
+      "        }",
+      "        return false;",
+      "    }"
+    ],
+    "description": "Function_isStringPalindrome"
+  },
+  "Function_isNumberPalindrome": {
+    "prefix": "My_Function_isNumberPalindrome",
+    "body": [
+      "public static boolean isNumberPalindrome(int num) {",
+      "        int reversedNum = 0, remainder;",
+      "",
+      "        // store the number to originalNum",
+      "        int originalNum = num;",
+      "",
+      "        // get the reverse of originalNum",
+      "        // store it in variable",
+      "        while (num != 0) {",
+      "            remainder = num % 10;",
+      "            reversedNum = reversedNum * 10 + remainder;",
+      "            num /= 10;",
+      "        }",
+      "",
+      "        // check if reversedNum and originalNum are equal",
+      "        if (originalNum == reversedNum) {",
+      "            return true;",
+      "        } else {",
+      "            return false;",
+      "        }",
+      "    }"
+    ],
+    "description": "Function_isNumberPalindrome"
+  },
+  "Function_isPrime": {
+    "prefix": "My_Function_isPrime",
+    "body": [
+      "public static boolean isPrime(int num) {",
+      "        int i = 2;",
+      "        boolean flag = false;",
+      "        while (i <= num / 2) {",
+      "            // condition for nonprime number",
+      "            if (num % i == 0) {",
+      "                flag = true;",
+      "                break;",
+      "            }",
+      "            ++i;",
+      "        }",
+      "            return !flag;",
+      "    }"
+    ],
+    "description": "Function_isPrime"
+  },
+  "Function_largestInArray": {
+    "prefix": "My_Function_largestInArray",
+    "body": [
+      "public static double largestInArray(double[] numArray) {",
+      "        double largest = numArray[0];",
+      "        for (double num : numArray) {",
+      "            if (largest < num)",
+      "                largest = num;",
+      "        }",
+      "        return largest;",
+      "    }"
+    ],
+    "description": "Function_largestInArray"
+  },
+  "Function_lowestInArray": {
+    "prefix": "My_Function_lowestInArray",
+    "body": [
+      "public static double lowestInArray(double[] numArray) {",
+      "        double lowest = numArray[0];",
+      "        for (double num : numArray) {",
+      "            if (lowest > num)",
+      "                lowest = num;",
+      "        }",
+      "        return lowest;",
+      "    }"
+    ],
+    "description": "Function_lowestInArray"
+  },
+  "Function_countCharInString": {
+    "prefix": "My_Function_countCharInString",
+    "body": [
+      "public static int countCharInString(String str, char ch) {",
+      "        int anzahl = 0;",
+      "        while (str.indexOf(ch) != -1) {",
+      "            str = str.substring(str.indexOf(ch) + 1);",
+      "            System.out.println(str);",
+      "            anzahl++;",
+      "        }",
+      "        return anzahl;",
+      "    }"
+    ],
+    "description": "Function_countCharInString"
+  },
+  "Function_fillNumberArrayNoDups": {
+    "prefix": "My_Function_fillNumberArrayNoDups",
+    "body": [
+      "public static Random random = new Random();",
+      "",
+      "    public static void fillNumberArrayNoDups(int[] arr) {",
+      "        for (int i = 0; i < arr.length; i++) {",
+      "            do {",
+      "                repeat = false;",
+      "                arr[i] = random.nextInt(49) + 1;",
+      "                for (int j = 0; j < i; j++) {",
+      "                    if (arr[i] == arr[j]) {",
+      "                        repeat = true;",
+      "                        break;",
+      "                    }",
+      "                }",
+      "            } while (repeat);",
+      "        }",
+      "    }"
+    ],
+    "description": "Function_fillNumberArrayNoDups"
+  },
+  "Function_convertSeconds2Minutes": {
+    "prefix": "My_Function_convertSeconds2Minutes",
+    "body": [
+      "public String convertSeconds2Minutes(int seconds) {",
+      "        return seconds / 60 + \":\" + seconds % 60;",
+      "    }"
+    ],
+    "description": "Function_convertSeconds2Minutes"
+  },
+  "GUI_SplitPane": {
+    "prefix": "My_GUI_SplitPane",
+    "body": [
+      "JSplitPane splitpane = new JSplitPane(JSplitPane.${1|HORIZONTAL_SPLIT,VERTICAL_SPLIT|});",
+      "splitpane.setLeftComponent(${2:Component});",
+      "splitpane.setRightComponent(${3:Component});"
+    ],
+    "description": "GUI_SplitPane"
+  },
+  "GUI_ActionListener": {
+    "prefix": "My_GUI_ActionListener",
+    "body": ["${1:Component}.addActionListener(event -> ${0:/* Code */});"],
+    "description": "GUI_ActionListener"
+  },
+  "GUI_Class_JFrame": {
+    "prefix": "My_GUI_Class_JFrame",
+    "body": [
+      "import javax.swing.JFrame;",
+      "import javax.swing.SwingUtilities;",
+      "",
+      "import java.awt.event.ActionEvent;",
+      "import java.awt.event.ActionListener;",
+      "",
+      "public class ${0:Name} extends JFrame implements ActionListener {",
+      "    public static void main(String[] args) {",
+      "        Runnable gui = new Runnable() {",
+      "            @Override",
+      "            public void run() {",
+      "                new ${0:Name}().setVisible(true);",
+      "            }",
+      "        };",
+      "        SwingUtilities.invokeLater(gui);",
+      "    }",
+      "    @Override",
+      "    public void actionPerformed(ActionEvent e) {",
+      "        // TODO Auto-generated method stub",
+      "    }",
+      "}"
+    ],
+    "description": "GUI_Class_JFrame"
+  },
+  "GUI_Class_JFrame_Lambda": {
+    "prefix": "My_GUI_Class_JFrame_Lambda",
+    "body": [
+      "import javax.swing.JFrame;",
+      "import javax.swing.SwingUtilities;",
+      "",
+      "import java.awt.event.ActionEvent;",
+      "import java.awt.event.ActionListener;",
+      "",
+      "public class ${1:Name} extends JFrame implements ActionListener {",
+      "    public static void main(String[] args) {",
+      "        Runnable gui = () -> {",
+      "            ${1:Name} ${0:Name} = new ${1:Name}();",
+      "            ${0:Name}.setVisible(true);",
+      "        };",
+      "        SwingUtilities.invokeLater(gui);",
+      "    }",
+      "",
+      "    @Override",
+      "    public void actionPerformed(ActionEvent e) {",
+      "        // TODO Auto-generated method stub",
+      "    }",
+      "}"
+    ],
+    "description": "GUI_Class_JFrame_Lambda"
+  },
+  "GUI_JFrame_props": {
+    "prefix": "My_GUI_JFrame_props",
+    "body": [
+      "//import java.awt.Toolkit;",
+      "setDefaultCloseOperation(EXIT_ON_CLOSE);",
+      "setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 2, Toolkit.getDefaultToolkit().getScreenSize().height / 2);",
+      "setResizable(false);"
+    ],
+    "description": "GUI_JFrame_props"
+  },
+  "GUI_Class_Dialog": {
+    "prefix": "My_GUI_Class_Dialog",
+    "body": [
+      "import javax.swing.JDialog;",
+      "import javax.swing.JFrame;",
+      "import javax.swing.JOptionPane;",
+      "",
+      "/* make it so",
+      "if (Condition)",
+      "            new Dialog(\"PLAIN_MESSAGE\", false);",
+      "        else",
+      "            new Dialog(\"ERROR_MESSAGE\", true);",
+      "*/",
+      "public class Dialog extends JDialog {",
+      "",
+      "    public Dialog(String message, boolean errorState) {",
+      "        init(message, errorState);",
+      "    }",
+      "",
+      "    private void init(String message, boolean errorState) {",
+      "",
+      "        JOptionPane.showMessageDialog(new JFrame(), message, \"Dialog\",",
+      "                errorState ? JOptionPane.ERROR_MESSAGE : JOptionPane.PLAIN_MESSAGE);",
+      "",
+      "    }",
+      "}"
+    ],
+    "description": "GUI_Class_Dialog"
+  },
+  "Override4Sort_compareTo": {
+    "prefix": "My_Override4Sort_compareTo",
+    "body": [
+      "@Override",
+      "    public int compareTo(Object o) {",
+      "        return this.objectAttribute< o.objectAttribute? -1 : (this.objectAttribute== o.objectAttribute? 0 : 1);",
+      "    }"
+    ],
+    "description": "Override4Sort_compareTo"
+  },
+  "Override4GC_finalize": {
+    "prefix": "My_Override4GC_finalize",
+    "body": [
+      "@Override",
+      "    protected void finalize() throws Throwable {",
+      "        /* code */",
+      "    }"
+    ],
+    "description": "Override4GC_finalize"
+  },
+  "Class_FileWriter_sinceJava7": {
+    "prefix": "My_Class_FileWriter_sinceJava7",
+    "body": [
+      "public abstract class MyFileWriter_sinceJava7 {",
+      "    public static void printInFile(String string) {",
+      "        int index = string.indexOf(\",\");",
+      "        String geraetname = string.substring(0, index);",
+      "        String s = \"/Users/User/eclipse-workspace/fpa/src/day33/dateiablage/\" + geraetname + \"_Java7.csv\";",
+      "        try (PrintWriter pWriter = new PrintWriter(new FileWriter(s, true), true);) {",
+      "            pWriter.print(string.substring(index + 1));",
+      "        } catch (IOException ioe) {",
+      "            ioe.printStackTrace();",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "Class_FileWriter_sinceJava7"
+  },
+  "Class_FileWriter_sinceJava11": {
+    "prefix": "My_Class_FileWriter_sinceJava11",
+    "body": [
+      "public abstract class MyFileWriter_sinceJava11 {",
+      "    public static void printInFile(String string) {",
+      "        int index = string.indexOf(\",\");",
+      "        String geraetname = string.substring(0, index);",
+      "        Path p = Path.of(\"/Users/User/eclipse-workspace/fpa/src/day33/dateiablage/\" + geraetname + \"_Java11.csv\");",
+      "        try {",
+      "            Path filePath = Files.writeString(p, string.substring(index + 1), StandardOpenOption.CREATE, StandardOpenOption.APPEND);",
+      "            // String s = Files.readString(filePath);",
+      "            // System.out.println(s);",
+      "        } catch (IOException e) {",
+      "            e.printStackTrace();",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "Class_FileWriter_sinceJava11"
+  },
+  "Class_FileWriter_tillJava6": {
+    "prefix": "My_Class_FileWriter_tillJava6",
+    "body": [
+      "public abstract class MyFileWriter_tillJava6 {",
+      "",
+      "    public static void printInFile(String string) {",
+      "        int index = string.indexOf(\",\");",
+      "        String geraetname = string.substring(0, index);",
+      "        PrintWriter pWriter = null;",
+      "        String s = \"/Users/User/eclipse-workspace/fpa/src/day33/dateiablage/\" + geraetname + \"_Java6.csv\";",
+      "        try {",
+      "            pWriter = new PrintWriter(new FileWriter(s, true), true);",
+      "            pWriter.print(string.substring(index + 1));",
+      "        } catch (IOException ioe) {",
+      "            ioe.printStackTrace();",
+      "        } finally {",
+      "            if (pWriter != null) {",
+      "                pWriter.flush();",
+      "                pWriter.close();",
+      "            }",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "Class_FileWriter_tillJava6"
+  },
+  "Pattern_Singleton": {
+    "prefix": "My_Pattern_Singleton",
+    "body": [
+      "public class Singleton {",
+      "    private static final Singleton OBJ = new Singleton();",
+      "     ",
+      "      private Singleton() {",
+      "          System.out.println(\"Objekt gebildet...\");",
+      "      }",
+      "          ",
+      "      public static Singleton getInstance() {",
+      "        return OBJ;",
+      "      }",
+      "}"
+    ],
+    "description": "Pattern_Singleton"
+  },
+  "Pattern_SingletonTS": {
+    "prefix": "My_Pattern_SingletonTS",
+    "body": [
+      "/**",
+      " * Performante und thread-safe Implementierung des Singleton-Patterns",
+      " */",
+      "public class Singleton {",
+      "    private static Singleton instance = new Singleton();",
+      "",
+      "    /**",
+      "     * Default-Konstruktor, der nicht außerhalb dieser Klasse aufgerufen werden kann",
+      "     */",
+      "    private Singleton() {",
+      "    }",
+      "",
+      "    /**",
+      "     * Statische Methode, liefert die einzige Instanz dieser Klasse zurück",
+      "     */",
+      "    public static Singleton getInstance() {",
+      "        return instance;",
+      "    }",
+      "}"
+    ],
+    "description": "Pattern_SingletonTS"
+  },
+  "Pattern_Strategy": {
+    "prefix": "My_Pattern_Strategy",
+    "body": [
+      "class Context {",
+      "",
+      "    // vorgegebener Standardwert (Default-Verhalten): ConcreteStrategyA",
+      "    private Strategy strategy = new ConcreteStrategyA();",
+      "",
+      "    public void execute() {",
+      "        // delegiert das Verhalten an ein Strategy-Objekt",
+      "        strategy.executeAlgorithm();",
+      "    }",
+      "",
+      "    public void setStrategy(Strategy strategy) {",
+      "        strategy = strategy;",
+      "    }",
+      "",
+      "    public Strategy getStrategy() {",
+      "        return strategy;",
+      "    }",
+      "}",
+      "",
+      "interface Strategy {",
+      "",
+      "    public void executeAlgorithm();",
+      "",
+      "}",
+      "",
+      "class ConcreteStrategyA implements Strategy {",
+      "",
+      "    public void executeAlgorithm() {",
+      "        System.out.println(\"Concrete Strategy A\");",
+      "    }",
+      "",
+      "}",
+      "",
+      "class ConcreteStrategyB implements Strategy {",
+      "",
+      "    public void executeAlgorithm() {",
+      "        System.out.println(\"Concrete Strategy B\");",
+      "    }",
+      "",
+      "}",
+      "",
+      "public class Client {",
+      "",
+      "    public static void main(String[] args) {",
+      "        // Default-Verhalten",
+      "        Context context = new Context();",
+      "        context.execute();",
+      "",
+      "        // Verhalten ändern",
+      "        context.setStrategy(new ConcreteStrategyB());",
+      "        context.execute();",
+      "    }",
+      "",
+      "}"
+    ],
+    "description": "Pattern_Strategy"
+  },
+  "Pattern_Observer": {
+    "prefix": "My_Pattern_Observer",
+    "body": [
+      "import java.util.ArrayList;",
+      "import java.util.List;",
+      "",
+      "interface Subject {",
+      "    public void attach(Observer observer);",
+      "",
+      "    public void detach(Observer observer);",
+      "",
+      "    public void setState(Message message);",
+      "",
+      "    public void notifyObserver();",
+      "",
+      "    public Message getMessage();",
+      "}",
+      "",
+      "interface Observer {",
+      "    public void update(Message message);",
+      "}",
+      "",
+      "class MessagePublisher implements Subject {",
+      "",
+      "    private List<Observer> observerList = new ArrayList<>();",
+      "    Message message;",
+      "",
+      "    @Override",
+      "    public void attach(Observer o) {",
+      "        observerList.add(o);",
+      "    }",
+      "",
+      "    @Override",
+      "    public void detach(Observer o) {",
+      "        observerList.remove(o);",
+      "    }",
+      "",
+      "    @Override",
+      "    public void notifyObserver() {",
+      "        for (Observer elementOfObserverList : observerList) {",
+      "            elementOfObserverList.update(message);",
+      "        }",
+      "    }",
+      "",
+      "    @Override",
+      "    public void setState(Message message) {",
+      "        this.message = message;",
+      "        notifyObserver();",
+      "    }",
+      "",
+      "    public Message getMessage() {",
+      "        return message;",
+      "    }",
+      "}",
+      "",
+      "class MessageSubscriberOne implements Observer {",
+      "    String messageContent;",
+      "",
+      "    public MessageSubscriberOne(MessagePublisher messagePublisher) {",
+      "        Message message = messagePublisher.getMessage();",
+      "        if (message != null) {",
+      "            this.messageContent = message.getMessageContent();",
+      "        }",
+      "    }",
+      "",
+      "    private void print() {",
+      "        System.out.println(\"MessageSubscriberOne :: \" + messageContent);",
+      "    }",
+      "",
+      "    @Override",
+      "    public void update(Message message) {",
+      "        this.messageContent = message.getMessageContent();",
+      "        print();",
+      "    }",
+      "}",
+      "",
+      "class MessageSubscriberTwo implements Observer {",
+      "    String messageContent;",
+      "",
+      "    public MessageSubscriberTwo(MessagePublisher messagePublisher) {",
+      "        Message message = messagePublisher.getMessage();",
+      "        if (message != null) {",
+      "            this.messageContent = message.getMessageContent();",
+      "        }",
+      "    }",
+      "",
+      "    private void print() {",
+      "        System.out.println(\"MessageSubscriberTwo :: \" + messageContent);",
+      "    }",
+      "",
+      "    @Override",
+      "    public void update(Message message) {",
+      "        this.messageContent = message.getMessageContent();",
+      "        print();",
+      "    }",
+      "}",
+      "",
+      "class MessageSubscriberThree implements Observer {",
+      "    String messageContent;",
+      "",
+      "    public MessageSubscriberThree(MessagePublisher messagePublisher) {",
+      "        Message message = messagePublisher.getMessage();",
+      "        if (message != null) {",
+      "            this.messageContent = message.getMessageContent();",
+      "        }",
+      "    }",
+      "",
+      "    private void print() {",
+      "        System.out.println(\"MessageSubscriberThree :: \" + messageContent);",
+      "    }",
+      "",
+      "    @Override",
+      "    public void update(Message message) {",
+      "        this.messageContent = message.getMessageContent();",
+      "        print();",
+      "    }",
+      "}",
+      "",
+      "class Message {",
+      "    final String messageContent;",
+      "",
+      "    public Message(String m) {",
+      "        this.messageContent = m;",
+      "    }",
+      "",
+      "    public String getMessageContent() {",
+      "        if (messageContent != null) {",
+      "            return messageContent;",
+      "        }",
+      "        return \"\";",
+      "    }",
+      "}",
+      "",
+      "public class Client {",
+      "    public static void main(String[] args) {",
+      "",
+      "        MessagePublisher p = new MessagePublisher();",
+      "        MessageSubscriberOne s1 = new MessageSubscriberOne(p);",
+      "        MessageSubscriberTwo s2 = new MessageSubscriberTwo(p);",
+      "        MessageSubscriberThree s3 = new MessageSubscriberThree(p);",
+      "",
+      "        p.attach(s1);",
+      "        p.attach(s2);",
+      "",
+      "        p.setState(new Message(\"First Message\")); // s1 and s2 will receive the update",
+      "",
+      "        p.detach(s1);",
+      "        p.attach(s3);",
+      "",
+      "        p.setState(new Message(\"Second Message\")); // s2 and s3 will receive the update",
+      "    }",
+      "}"
+    ],
+    "description": "Pattern_Observer"
+  },
+  "Pattern_Observer_Observerable_deprecatedsince9": {
+    "prefix": "My_Pattern_Observer_Observerable_deprecatedsince9",
+    "body": [
+      "import java.util.Observable;",
+      "import java.util.Observer;",
+      "",
+      "import javax.swing.JFrame;",
+      "import javax.swing.JTextField;",
+      "",
+      "class ObserverClass {",
+      "    public static void main(String[] args) {",
+      "        new Erzaehler();",
+      "    }",
+      "}",
+      "",
+      "class Erzaehler extends Observable {",
+      "",
+      "    public Erzaehler() {",
+      "        this.addObserver(new Zuhoerer_1());",
+      "        this.addObserver(new Zuhoerer_2());",
+      "        tell(\"hoihoi!\");",
+      "        tell(\"blablabla!\");",
+      "    }",
+      "",
+      "    public void tell(String info) {",
+      "        if (countObservers() > 0) {",
+      "            setChanged();",
+      "            notifyObservers(info);",
+      "        }",
+      "    }",
+      "}",
+      "",
+      "class Zuhoerer_1 implements Observer {",
+      "",
+      "    private JTextField field1;",
+      "",
+      "    public Zuhoerer_1() {",
+      "        JFrame frame = new JFrame(\"Zuhoerer 1\");",
+      "        field1 = new JTextField(\"a\");",
+      "        frame.add(field1);",
+      "",
+      "        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);",
+      "        frame.setSize(300, 50);",
+      "        frame.setLocation(400, 400);",
+      "        frame.setVisible(true);",
+      "    }",
+      "",
+      "    public void update(Observable o, Object arg) {",
+      "        field1.setText((String) arg);",
+      "    }",
+      "}",
+      "",
+      "class Zuhoerer_2 implements Observer {",
+      "",
+      "    private JTextField field2;",
+      "",
+      "    public Zuhoerer_2() {",
+      "        JFrame frame = new JFrame(\"Zuhoerer 2\");",
+      "        field2 = new JTextField(\"b\");",
+      "        frame.add(field2);",
+      "",
+      "        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);",
+      "        frame.setSize(300, 50);",
+      "        frame.setLocationRelativeTo(null);",
+      "        frame.setVisible(true);",
+      "    }",
+      "",
+      "    public void update(Observable o, Object arg) {",
+      "        field2.setText((String) arg);",
+      "    }",
+      "}"
+    ],
+    "description": "Pattern_Observer_Observerable_deprecatedsince9"
+  },
+  "Pattern_FactoryMethod": {
+    "prefix": "My_Pattern_FactoryMethod",
+    "body": [
+      "/**",
+      " * \"The Icon class is a factory for creating Icon objects from image files.\"",
+      " * ",
+      " * The Icon class is a factory for creating Icon objects from image files",
+      " */",
+      "class Icon {",
+      "    private Icon() {",
+      "        // Verhindert das manuelle Instanzieren",
+      "    }",
+      "",
+      "    public static Icon loadFromFile(String name) {",
+      "        Icon ret = null;",
+      "        if (name.endsWith(\".gif\")) {",
+      "            // Code zum Erzeugen eines Icons aus einer gif-Datei...",
+      "        } else if (name.endsWith(\".jpg\")) {",
+      "            // Code zum Erzeugen eines Icons aus einer jpg-Datei...",
+      "        } else if (name.endsWith(\".png\")) {",
+      "            // Code zum Erzeugen eines Icons aus einer png-Datei...",
+      "        }",
+      "        return ret;",
+      "    }",
+      "}"
+    ],
+    "description": "Pattern_FactoryMethod"
+  },
+  "Pattern_FactoryClass": {
+    "prefix": "My_Pattern_FactoryClass",
+    "body": [
+      "// An interface.",
+      "interface DoubleMethod {",
+      "    public double compute(double value);",
+      "}",
+      "",
+      "/**",
+      " * The DoubleMethodFactory class is a factory for creating objects that",
+      " * implement the DoubleMethod interface",
+      " */",
+      "class DoubleMethodFactory {",
+      "    public DoubleMethodFactory() {",
+      "        // Hier wird die Factory selbst erzeugt und konfiguriert",
+      "    }",
+      "",
+      "    public DoubleMethod createFromClassFile(String name) {",
+      "        // Lädt die Klassendatei mit dem angegebenen Namen,",
+      "        // prüft, ob sie DoubleMethod implementiert, und",
+      "        // instanziert sie gegebenenfalls...",
+      "        return null;",
+      "    }",
+      "",
+      "    public DoubleMethod createFromStatic(String clazz, String method) {",
+      "        // Erzeugt ein Wrapper-Objekt, das das Interface",
+      "        // DoubleMethod implementiert und beim Aufruf von",
+      "        // compute die angegebene Methode der vorgegebenen",
+      "        // Klasse aufruft...",
+      "        return null;",
+      "    }",
+      "",
+      "    public DoubleMethod createFromPolynom(String expr) {",
+      "        // Erzeugt aus dem angegebenen Polynom-Ausdruck ein",
+      "        // DoubleMethod-Objekt, in dem ein äquivalentes",
+      "        // Polynom implementiert wird...",
+      "        return null;",
+      "    }",
+      "}"
+    ],
+    "description": "Pattern_FactoryClass"
+  },
+  "Pattern_AbstractFactory": {
+    "prefix": "My_Pattern_AbstractFactory",
+    "body": [
+      "//------------------------------------------------------------------",
+      "//Abstrakte Produkte",
+      "//------------------------------------------------------------------",
+      "abstract class Product1 {",
+      "}",
+      "",
+      "abstract class Product2 {",
+      "}",
+      "",
+      "// ------------------------------------------------------------------",
+      "// Abstrakte Factory",
+      "// ------------------------------------------------------------------",
+      "abstract class ProductFactory {",
+      "    public abstract Product1 createProduct1();",
+      "",
+      "    public abstract Product2 createProduct2();",
+      "",
+      "    public static ProductFactory getFactory(String variant) {",
+      "        ProductFactory ret = null;",
+      "        if (variant.equals(\"A\")) {",
+      "            ret = new ConcreteFactoryVariantA();",
+      "        } else if (variant.equals(\"B\")) {",
+      "            ret = new ConcreteFactoryVariantB();",
+      "        }",
+      "        return ret;",
+      "    }",
+      "",
+      "    public static ProductFactory getDefaultFactory() {",
+      "        return getFactory(\"A\");",
+      "    }",
+      "}",
+      "",
+      "// ------------------------------------------------------------------",
+      "// Konkrete Produkte für Implementierungsvariante A",
+      "// ------------------------------------------------------------------",
+      "class Product1VariantA extends Product1 {",
+      "}",
+      "",
+      "class Product2VariantA extends Product2 {",
+      "}",
+      "",
+      "// ------------------------------------------------------------------",
+      "// Konkrete Factory für Implementierungsvariante A",
+      "// ------------------------------------------------------------------",
+      "class ConcreteFactoryVariantA extends ProductFactory {",
+      "    public Product1 createProduct1() {",
+      "        return new Product1VariantA();",
+      "    }",
+      "",
+      "    public Product2 createProduct2() {",
+      "        return new Product2VariantA();",
+      "    }",
+      "}",
+      "",
+      "// ------------------------------------------------------------------",
+      "// Konkrete Produkte für Implementierungsvariante B",
+      "// ------------------------------------------------------------------",
+      "class Product1VariantB extends Product1 {",
+      "}",
+      "",
+      "class Product2VariantB extends Product2 {",
+      "}",
+      "",
+      "// ------------------------------------------------------------------",
+      "// Konkrete Factory für Implementierungsvariante B",
+      "// ------------------------------------------------------------------",
+      "class ConcreteFactoryVariantB extends ProductFactory {",
+      "    public Product1 createProduct1() {",
+      "        return new Product1VariantB();",
+      "    }",
+      "",
+      "    public Product2 createProduct2() {",
+      "        return new Product2VariantB();",
+      "    }",
+      "}",
+      "",
+      "// ------------------------------------------------------------------",
+      "// Beispielanwendung",
+      "// ------------------------------------------------------------------",
+      "public class test {",
+      "    public static void main(String[] args) {",
+      "        ProductFactory fact = ProductFactory.getDefaultFactory();",
+      "        Product1 prod1 = fact.createProduct1();",
+      "        Product2 prod2 = fact.createProduct2();",
+      "    }",
+      "}// An interface.",
+      "interface DoubleMethod {",
+      "    public double compute(double value);",
+      "}",
+      "",
+      "/**",
+      " * The DoubleMethodFactory class is a factory for creating objects that",
+      " * implement the DoubleMethod interface",
+      " */",
+      "class DoubleMethodFactory {",
+      "    public DoubleMethodFactory() {",
+      "        // Hier wird die Factory selbst erzeugt und konfiguriert",
+      "    }",
+      "",
+      "    public DoubleMethod createFromClassFile(String name) {",
+      "        // Lädt die Klassendatei mit dem angegebenen Namen,",
+      "        // prüft, ob sie DoubleMethod implementiert, und",
+      "        // instanziert sie gegebenenfalls...",
+      "        return null;",
+      "    }",
+      "",
+      "    public DoubleMethod createFromStatic(String clazz, String method) {",
+      "        // Erzeugt ein Wrapper-Objekt, das das Interface",
+      "        // DoubleMethod implementiert und beim Aufruf von",
+      "        // compute die angegebene Methode der vorgegebenen",
+      "        // Klasse aufruft...",
+      "        return null;",
+      "    }",
+      "",
+      "    public DoubleMethod createFromPolynom(String expr) {",
+      "        // Erzeugt aus dem angegebenen Polynom-Ausdruck ein",
+      "        // DoubleMethod-Objekt, in dem ein äquivalentes",
+      "        // Polynom implementiert wird...",
+      "        return null;",
+      "    }",
+      "}"
+    ],
+    "description": "Pattern_AbstractFactory"
+  },
+  "Parse_Int2String": {
+    "prefix": "My_Parse_Int2String",
+    "body": ["String a = String.valueOf(${TM_SELECTED_TEXT:int})"],
+    "description": "Parse_Int2String"
+  },
+  "Parse_Parse_String2Int": {
+    "prefix": "My_Parse_String2Int",
+    "body": ["Integer.parseInt(${TM_SELECTED_TEXT:string})"],
+    "description": "Parse_Parse_String2Int"
+  },
+  "Parse_Dec2Bin": {
+    "prefix": "My_Parse_Dec2Bin",
+    "body": ["Integer.toBinaryString(${TM_SELECTED_TEXT:decimal})"],
+    "description": "Parse_Dec2Bin"
+  },
+  "Parse_Bin2Dec": {
+    "prefix": "My_Parse_Bin2Dec",
+    "body": ["Integer.parseInt(${TM_SELECTED_TEXT:binary}, 2)"],
+    "description": "Parse_Bin2Dec"
+  },
+  "Parse_String2Float": {
+    "prefix": "My_Parse_String2Float",
+    "body": ["Float.parseFloat(${TM_SELECTED_TEXT:string})"],
+    "description": "Parse_String2Float"
+  },
+  "comment_Line": {
+    "prefix": "My_comment_Line",
+    "body": ["//"],
+    "description": "comment_Line"
+  },
+  "comment_Block": {
+    "prefix": "My_comment_Block",
+    "body": ["/**/"],
+    "description": "comment_Block"
+  },
+  "Block": {
+    "prefix": "My_Block",
+    "body": ["{", "  ${0:/*Code*/}", "}"],
+    "description": "Block"
+  },
+  "VSC_Shortcuts": {
+    "prefix": "My_VSC_Shortcuts",
+    "body": [
+      "//Multiline Cursor                     Strg+Alt+Up, Strg+Alt+Down",
+      "//MultilineCursor besser               Strg+Shift+Alt+ArrowKey",
+      "//Zeilen kopieren (hoch/runter)        Shift+Alt+Up, Shift+Alt+Down",
+      "//Selektion vergrößern/verkleinern     Shift+Alt+Left, Shift+Alt+Right",
+      "//Zeile auf/ab bewegen                 Alt+Up, Alt+Down",
+      "//Command Palette                      F1",
+      "//search symbols                       Strg+T",
+      "//find                                 Strg+F",
+      "//replace                              Strg+H",
+      "//alle gefundenen editieren            Alt+Enter",
+      "//Document format                      Shift+Alt+F"
+    ],
+    "description": "VSC_Shortcuts"
+  }
+}
